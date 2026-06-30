@@ -1,0 +1,51 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Components
+import { OpeningScreen } from "../components/sections/OpeningScreen";
+import { HeroSection } from "../components/sections/HeroSection";
+import { CountdownSection } from "../components/sections/CountdownSection";
+import { TimelineSection } from "../components/sections/TimelineSection";
+import { GallerySection } from "../components/sections/GallerySection";
+import { VideoSection } from "../components/sections/VideoSection";
+import { VoiceSection } from "../components/sections/VoiceSection";
+import { LetterSection } from "../components/sections/LetterSection";
+import { ReasonsSection } from "../components/sections/ReasonsSection";
+import { DreamsSection } from "../components/sections/DreamsSection";
+import { FinalSection } from "../components/sections/FinalSection";
+import { ClosingScreen } from "../components/sections/ClosingScreen";
+import { CursorTrail } from "../components/animations/CursorTrail";
+---
+
+<MainLayout title="Happy Birthday, Sayang!">
+  {
+    /* 
+    Kita membungkus seluruh konten dalam div id="app-content" yang bisa kita kontrol visibility-nya.
+    OpeningScreen akan meng-handle "Click to Enter" dan memainkan animasi pembuka.
+  */
+  }
+  <div
+    id="main-content"
+    class="hidden opacity-0 transition-opacity duration-1000 ease-in-out">
+    <HeroSection client:load />
+    <CountdownSection client:load />
+    <TimelineSection client:load />
+    <GallerySection client:visible />
+    <VideoSection client:visible />
+    <VoiceSection client:visible />
+    <LetterSection client:visible />
+    <ReasonsSection client:visible />
+    <DreamsSection client:visible />
+    <FinalSection client:visible />
+    <ClosingScreen client:visible />
+  </div>
+
+  <OpeningScreen client:load />
+
+  <CursorTrail client:load />
+</MainLayout>
+
+<script>
+  // Script ini memastikan scroll selalu di atas saat halaman dimuat
+  window.scrollTo(0, 0);
+</script>

@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  /* Soft Blush Pink Palette */
+  --color-primary-50: #fff5f8;
+  --color-primary-100: #ffe4ed;
+  --color-primary-200: #ffcddb;
+  --color-primary-300: #ffa8c0;
+  --color-primary-400: #ff7aa0;
+  --color-primary-500: #f85181;
+  --color-primary-600: #e42c64;
+  --color-primary-700: #c11a4d;
+  --color-primary-800: #a11843;
+  --color-primary-900: #87163b;
+
+  /* Warm Mauve Neutrals */
+  --color-neutral-50: #fdfbfb;
+  --color-neutral-900: #423439;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-200, #ffcddb);
+    border-radius: 20px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-300, #ffa8c0);
+  }
+
+  @keyframes float-up {
+    0% {
+      transform: translateY(100px) scale(0.5) rotate(-10deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-120vh) scale(1.2) rotate(15deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    10%, 30% {
+      transform: scale(1.1);
+    }
+    20% {
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-float-up {
+    animation: float-up 15s linear infinite;
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  .bg-glass {
+    @apply bg-white/70 backdrop-blur-md shadow-2xl shadow-primary-500/10 border border-white/50;
+  }
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: "Inter", sans-serif;
+    background-color: var(--color-neutral-50, #fdfbfb); /* warm soft cream */
+    color: var(--color-neutral-900, #423439); /* dark mauve instead of black */
+  }
+
+  body {
+    @apply antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+/* Swiper Global Customization - Elegant Glass Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px;
+  color: transparent !important; /* Hide default text/icon if any */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none !important; /* Completely hide default icon */
+  content: '' !important;
+}
+
+/* Minimalist Dark Rose Chevron SVG */
+.swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e42c64' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E") !important;
+  right: 12px !important;
+}
+
+.swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e42c64' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'/%3E%3C/svg%3E") !important;
+  left: 12px !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 0.5 !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 10px !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+  margin: 0 4px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  opacity: 1 !important;
+  width: 28px !important;
+  box-shadow: 0 2px 8px rgba(255,255,255,0.6), 0 2px 4px rgba(0,0,0,0.3) !important;
+}
