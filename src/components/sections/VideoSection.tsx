@@ -20,9 +20,12 @@ export function VideoSection() {
             <FadeIn key={video.id} delay={0.2 * (index + 1)}>
               <div 
                 className={`group relative bg-neutral-50 p-3 md:p-4 pb-14 md:pb-16 cursor-pointer shadow-xl shadow-neutral-300/50 hover:shadow-2xl hover:shadow-neutral-400/50 hover:-translate-y-2 transition-all duration-500 rounded-md border border-neutral-200/60 ${
-                  index % 2 === 0 ? 'rotate-2 hover:rotate-1' : '-rotate-2 hover:-rotate-1'
+                  index % 2 === 0 ? 'rotate-3 md:rotate-6 hover:rotate-1 md:hover:rotate-2 mt-4 md:mt-12' : '-rotate-3 md:-rotate-6 hover:-rotate-1 md:hover:-rotate-2'
                 }`}
-                onClick={() => setActiveVideo(video.src)}
+                onClick={() => {
+                  setActiveVideo(video.src);
+                  window.dispatchEvent(new CustomEvent('pauseBackgroundMusic'));
+                }}
               >
                 <div className="relative rounded-md overflow-hidden aspect-video bg-neutral-900">
                   {/* Thumbnail */}
@@ -68,8 +71,11 @@ export function VideoSection() {
       {activeVideo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4">
           <button 
-            onClick={() => setActiveVideo(null)}
-            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+            onClick={() => {
+              setActiveVideo(null);
+              window.dispatchEvent(new CustomEvent('playBackgroundMusic'));
+            }}
+            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white z-50"
           >
             <X className="w-6 h-6" />
           </button>
@@ -79,6 +85,10 @@ export function VideoSection() {
               src={activeVideo} 
               controls 
               autoPlay 
+              onEnded={() => {
+                setActiveVideo(null);
+                window.dispatchEvent(new CustomEvent('playBackgroundMusic'));
+              }}
               className="w-full h-full object-contain"
             />
           </div>

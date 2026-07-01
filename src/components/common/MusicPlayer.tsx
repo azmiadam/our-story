@@ -25,10 +25,19 @@ export function MusicPlayer({ src }: MusicPlayerProps) {
       }
     };
 
+    const handlePauseMusic = () => {
+      if (audioRef.current && !audioRef.current.paused) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+
     window.addEventListener('playBackgroundMusic', handlePlayMusic);
+    window.addEventListener('pauseBackgroundMusic', handlePauseMusic);
 
     return () => {
       window.removeEventListener('playBackgroundMusic', handlePlayMusic);
+      window.removeEventListener('pauseBackgroundMusic', handlePauseMusic);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
