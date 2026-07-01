@@ -30,7 +30,7 @@ export function OpeningScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFFBFB] via-primary-50 to-primary-100/70 px-4"
+          className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-[#FFFBFB] via-primary-50 to-primary-100/70 px-4"
         >
           {/* Aurora Glow Backgrounds (Made stronger) */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -40,7 +40,7 @@ export function OpeningScreen() {
             
             {/* Drifting Giant Hearts (Elegant Watermark Style - Made More Visible) */}
             <motion.div
-              className="absolute text-rose-300/20 blur-[4px]"
+              className="absolute text-rose-300/20 blur-xs"
               initial={{ opacity: 0, x: '-20vw', y: '80vh' }}
               animate={{
                 x: ['-20vw', '120vw'],
@@ -59,7 +59,7 @@ export function OpeningScreen() {
             </motion.div>
 
             <motion.div
-              className="absolute text-primary-300/20 blur-[4px]"
+              className="absolute text-primary-300/20 blur-xs"
               initial={{ opacity: 0, x: '120vw', y: '20vh' }}
               animate={{
                 x: ['120vw', '-20vw'],
@@ -75,7 +75,7 @@ export function OpeningScreen() {
               }}
               style={{ top: 0, left: 0 }}
             >
-              <Heart className="w-[30rem] h-[30rem]" fill="currentColor" />
+              <Heart className="w-120 h-120" fill="currentColor" />
             </motion.div>
           </div>
           
