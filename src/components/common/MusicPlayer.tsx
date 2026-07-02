@@ -13,8 +13,23 @@ export function MusicPlayer({ src }: MusicPlayerProps) {
   useEffect(() => {
     // Create audio element only on client side
     audioRef.current = new Audio(src);
-    audioRef.current.loop = true;
+    // We handle looping manually to remove the gap
+    audioRef.current.loop = false;
     audioRef.current.volume = 0.4;
+
+    // Use a precise interval to check and loop audio to avoid the default "gap"
+    // that HTML5 Audio introduces, and also skip the silent padding often found in mp3s.
+    const loopBuffer = 0.35; // seconds before end to trigger loop
+    const checkLoopInterval = setInterval(() => {
+      if (audioRef.current && audioRef.current.duration) {
+        if (audioRef.current.currentTime >= audioRef.current.duration - loopBuffer) {
+          audioRef.current.currentTime = 0;
+          if (!audioRef.current.paused) {
+            audioRef.current.play().catch(e => console.error("Audio loop failed:", e));
+          }
+        }
+      }
+    }, 50);
 
     const handlePlayMusic = () => {
       if (audioRef.current) {
@@ -36,6 +51,7 @@ export function MusicPlayer({ src }: MusicPlayerProps) {
     window.addEventListener('pauseBackgroundMusic', handlePauseMusic);
 
     return () => {
+      clearInterval(checkLoopInterval);
       window.removeEventListener('playBackgroundMusic', handlePlayMusic);
       window.removeEventListener('pauseBackgroundMusic', handlePauseMusic);
       if (audioRef.current) {

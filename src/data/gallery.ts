@@ -5,7 +5,7 @@ export const galleryData: GalleryImage[] = [
     id: '1',
     src: '/images/memori/foto1.jpeg',
     alt: 'Memori 1',
-    caption: 'Momen dimana kita sebelum jungkir balik.'
+    caption: 'Momen pertama kita ngedate dan momen dimana kita sebelum jungkir balik.'
   },
   {
     id: '2',
@@ -35,7 +35,7 @@ export const galleryData: GalleryImage[] = [
     id: '6',
     src: '/images/memori/foto6.JPG',
     alt: 'Memori 6',
-    caption: 'Momen ultah kamu dan momen dimana kamu aku iket.'
+    caption: 'Momen ultah kamu dan momen dimana kamu aku ikat.'
   },
   {
     id: '7',
