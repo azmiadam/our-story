@@ -3,6 +3,7 @@
 @theme {
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
+  --font-handwriting: "Caveat", cursive;
   
   /* Soft Blush Pink Palette */
   --color-primary-50: #fff5f8;
