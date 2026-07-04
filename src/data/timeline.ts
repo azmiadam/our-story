@@ -2,6 +2,13 @@ import type { TimelineEvent } from '../types';
 
 export const timelineEvents: TimelineEvent[] = [
   {
+    id: 't-0',
+    date: 'Waktu Kamu Masih Gemesin (Sekarang Juga Sih)',
+    title: 'Si Kecil Lala',
+    description: 'Ternyata dari dulu kamu udah gemesin banget ya! Rasanya pengen cubit pipinya. Pantesan aja pas gede bikin aku jatuh cinta berkali-kali.',
+    image: '/images/perjalanan-kita/masakecil/lala_kecil.jpeg'
+  },
+  {
     id: 't-1',
     date: '01 November 2023',
     title: 'Awal Kita Bertemu',

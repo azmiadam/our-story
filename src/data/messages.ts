@@ -1,7 +1,7 @@
 import type { MessageData } from '../types';
 
 export const messages: MessageData = {
-  voiceMessageSrc: '/audio/voice.mp4',
+  voiceMessageSrc: '/audio/voice_aku.mp4',
   digitalLetter: [
     "SELAMAT ULANG TAHUN, SAYANGKUUU ❤️,",
     "Aku udah berkali-kali mikir mau nulis apa buat hari ini. Banyak banget yang pengen aku sampaikan, tapi setiap kali mulai nulis, rasanya semua kata nggak cukup buat ngejelasin apa yang aku rasain ke kamu.",
