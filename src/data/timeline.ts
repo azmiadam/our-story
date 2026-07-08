@@ -72,7 +72,8 @@ export const timelineEvents: TimelineEvent[] = [
       '/images/perjalanan-kita/sekarang/foto17.jpeg',
       '/images/perjalanan-kita/sekarang/foto18.jpeg',
       '/images/perjalanan-kita/sekarang/foto19.jpeg',
-      '/images/perjalanan-kita/sekarang/foto20.jpeg'
+      '/images/perjalanan-kita/sekarang/foto20.jpeg',
+      '/images/perjalanan-kita/sekarang/foto21.jpeg'
     ]
   }
 ];
