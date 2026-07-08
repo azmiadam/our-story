@@ -5,7 +5,16 @@ import confetti from 'canvas-confetti';
 
 export function ClosingScreen() {
   const [showSecret, setShowSecret] = useState(false);
+  const [showBigHeart, setShowBigHeart] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handleLoveYouToo = () => {
+    setShowSecret(false);
+    setShowBigHeart(true);
+    setTimeout(() => {
+      setShowBigHeart(false);
+    }, 2500);
+  };
 
   useEffect(() => {
     if (showSecret) {
@@ -169,10 +178,87 @@ export function ClosingScreen() {
                 <span className="bg-linear-to-r from-rose-400 via-primary-500 to-rose-400 inline-block text-transparent bg-clip-text drop-shadow-sm">Pesan Rahasia</span>
               </h3>
               
-              <p className="relative z-10 text-neutral-700 italic leading-loose text-[15px] md:text-base font-medium">
-                "Sebenarnya nggak ada pesan rahasia sih... aku cuma kangen aja dan pengen bilang kalau kamu itu orang paling berharga di hidupku. Aku sengaja menyembunyikan pesan ini di sini, sama seperti bagaimana aku selalu menyembunyikan namamu di dalam setiap doa-doaku. Selamat bertambah usia, separuh jiwaku. Semangat terus ya sayangkuuu!"
-              </p>
+              <div className="relative z-10 space-y-4 text-neutral-700 text-[15px] md:text-base font-medium leading-relaxed">
+                <p className="italic">
+                  "Sebenarnya nggak ada pesan rahasia sih... aku cuma kangen aja dan pengen bilang kalau kamu itu orang paling berharga di hidupku.
+                </p>
+                <p className="italic">
+                  Aku sengaja menyembunyikan pesan ini di sini, sama seperti bagaimana aku selalu menyembunyikan namamu di dalam setiap doa-doaku.
+                </p>
+                <p className="text-rose-500 font-semibold pt-2">
+                  Selamat bertambah usia, separuh jiwaku.<br/>Semangat terus ya sayangkuuu!"
+                </p>
+              </div>
+
+              <motion.button
+                onClick={handleLoveYouToo}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative z-10 mt-8 bg-linear-to-r from-rose-400 to-primary-500 hover:from-rose-500 hover:to-primary-600 text-white px-8 py-2.5 rounded-full font-medium shadow-lg shadow-rose-400/30 flex items-center gap-2 mx-auto transition-colors"
+              >
+                <span>Love you too!</span>
+                <Heart className="w-4 h-4 fill-white" />
+              </motion.button>
             </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Big Heart Animation */}
+      <AnimatePresence>
+        {showBigHeart && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none">
+            {/* Soft pink blur backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.8, 0] }}
+              transition={{ duration: 2.5, times: [0, 0.5, 1], ease: "easeInOut" }}
+              className="absolute inset-0 bg-rose-100/30 backdrop-blur-sm"
+            />
+
+            {/* Main giant heart */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ 
+                opacity: [0, 1, 1, 1, 0], 
+                scale: [0, 1.2, 1, 20, 30] 
+              }}
+              transition={{ 
+                duration: 2.5, 
+                times: [0, 0.15, 0.3, 0.7, 1], 
+                ease: "easeInOut" 
+              }}
+              className="relative z-10"
+            >
+              {/* Note: drop-shadow is removed here because scaling it 30x can cause severe performance drops/lag in some browsers */}
+              <Heart className="w-32 h-32 text-rose-500 fill-rose-500" />
+            </motion.div>
+
+            {/* Burst of smaller hearts */}
+            {[...Array(8)].map((_, i) => {
+              const angle = (i / 8) * Math.PI * 2;
+              const radius = 150 + Math.random() * 100;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                  animate={{ 
+                    opacity: [0, 1, 0], 
+                    scale: [0, Math.random() * 0.8 + 0.4, 0],
+                    x: Math.cos(angle) * radius,
+                    y: Math.sin(angle) * radius - 50
+                  }}
+                  transition={{ 
+                    duration: 1.5, 
+                    delay: 0.15 + Math.random() * 0.2,
+                    ease: "easeOut" 
+                  }}
+                  className="absolute z-20"
+                >
+                  <Heart className="w-10 h-10 text-rose-400 fill-rose-400 opacity-80" />
+                </motion.div>
+              );
+            })}
           </div>
         )}
       </AnimatePresence>
