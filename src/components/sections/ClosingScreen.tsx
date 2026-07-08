@@ -207,7 +207,7 @@ export function ClosingScreen() {
       {/* Big Heart Animation */}
       <AnimatePresence>
         {showBigHeart && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none">
+          <div className="fixed inset-0 z-100 flex items-center justify-center pointer-events-none">
             {/* Soft pink blur backdrop */}
             <motion.div 
               initial={{ opacity: 0 }}
